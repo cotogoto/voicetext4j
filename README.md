@@ -23,7 +23,7 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
                     .getResponse("こんにちは")
                     .inputStream();
                     
-            // you can use speak(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
+            // you can use getResponse(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
         }
     }
 

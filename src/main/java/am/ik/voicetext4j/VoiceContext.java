@@ -32,12 +32,11 @@
 package am.ik.voicetext4j;
 
 
+import java.io.Serializable;
+
 import am.ik.voicetext4j.http.VoiceTextFields;
 import am.ik.voicetext4j.http.VoiceTextResponse;
 import am.ik.voicetext4j.http.VoiceTextUrlConnectionClient;
-
-import java.io.Serializable;
-import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("unchecked")
 public abstract class VoiceContext<T extends VoiceContext> implements Serializable {
@@ -46,11 +45,35 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
     int speed = 100;
     int volume = 100;
 
-    public VoiceContext(String speaker) {
+    public VoiceContext(final String speaker) {
         this.speaker = speaker;
     }
 
-    public T pitch(int pitch) {
+    protected VoiceTextFields build() {
+        return new VoiceTextFields()
+                .put("speaker", this.speaker)
+                .put("pitch", String.valueOf(this.pitch))
+                .put("speed", String.valueOf(this.speed))
+                .put("volume", String.valueOf(this.volume));
+    }
+
+    public VoiceTextResponse getResponse(final String text) {
+        return this.getResponse(text, System.getProperty("voicetext.apikey"));
+    }
+
+    public VoiceTextResponse getResponse(final String text, final String apiKey) {
+        if (text == null || text.length() < 1 || text.length() > 200) {
+            throw new IllegalArgumentException("the length of 'text' must be between 1 and 200.");
+        }
+        if (apiKey == null || apiKey.isEmpty()) {
+            throw new IllegalArgumentException("'apiKey' is required.");
+        }
+        final VoiceTextFields fields = this.build().put("text", text);
+        return new VoiceTextUrlConnectionClient()
+                .execute(fields, apiKey);
+    }
+
+    public T pitch(final int pitch) {
         if (pitch < 50 || pitch > 200) {
             throw new IllegalArgumentException("'pitch' must be between 50 and 200.");
         }
@@ -58,7 +81,7 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
         return (T) this;
     }
 
-    public T speed(int speed) {
+    public T speed(final int speed) {
         if (speed < 50 || speed > 400) {
             throw new IllegalArgumentException("'speed' must be between 50 and 400.");
         }
@@ -66,7 +89,7 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
         return (T) this;
     }
 
-    public T volume(int volume) {
+    public T volume(final int volume) {
         if (volume < 50 || volume > 200) {
             throw new IllegalArgumentException("'volume' must be between 50 and 200.");
         }
@@ -74,37 +97,11 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
         return (T) this;
     }
 
-    protected VoiceTextFields build() {
-        return new VoiceTextFields()
-                .put("speaker", speaker)
-                .put("pitch", String.valueOf(pitch))
-                .put("speed", String.valueOf(speed))
-                .put("volume", String.valueOf(volume));
-    }
-
-    public VoiceTextResponse getResponse(String text, String apiKey) {
-        if (text == null || text.length() < 1 || text.length() > 200) {
-            throw new IllegalArgumentException("the length of 'text' must be between 1 and 200.");
-        }
-        if (apiKey == null || apiKey.isEmpty()) {
-            throw new IllegalArgumentException("'apiKey' is required.");
-        }
-        VoiceTextFields fields = build().put("text", text);
-        return new VoiceTextUrlConnectionClient()
-                .execute(fields, apiKey);
-    }
-
-    public VoiceTextResponse getResponse(String text) {
-        return getResponse(text, System.getProperty("voicetext.apikey"));
-    }
-
-    public CompletableFuture<Void> speak(String text, String apiKey) throws InterruptedException {
-        return getResponse(text, apiKey).play();
-    }
-
-    public CompletableFuture<Void> speak(String text) {
-        return getResponse(text).play();
-    }
-
-
+    // public CompletableFuture<Void> speak(String text, String apiKey) throws InterruptedException {
+    // return getResponse(text, apiKey).play();
+    // }
+    //
+    // public CompletableFuture<Void> speak(String text) {
+    // return getResponse(text).play();
+    // }
 }

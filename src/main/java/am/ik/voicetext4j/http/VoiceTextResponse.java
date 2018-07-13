@@ -31,44 +31,46 @@
 
 package am.ik.voicetext4j.http;
 
-import javax.sound.sampled.*;
-import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
+import java.io.InputStream;
 
 public class VoiceTextResponse {
-    final AudioInputStream audioInputStream;
 
-    public VoiceTextResponse(AudioInputStream audioInputStream) {
-        this.audioInputStream = audioInputStream;
+    final InputStream inputStream;
+
+
+    public VoiceTextResponse(final InputStream audioInputStream) {
+
+        this.inputStream = audioInputStream;
     }
 
-    public AudioInputStream audioInputStream() {
-        return audioInputStream;
+
+    public InputStream inputStream() {
+
+        return this.inputStream;
     }
 
-    public Clip clip() {
-        AudioFormat format = audioInputStream.getFormat();
-        DataLine.Info info = new DataLine.Info(Clip.class, format);
-        try {
-            Clip clip = (Clip) AudioSystem.getLine(info);
-            clip.open(audioInputStream);
-            return clip;
-        } catch (LineUnavailableException | IOException e) {
-            throw new VoiceTextIllegalStateException(e);
-        }
-    }
+    // public Clip clip() {
+    // AudioFormat format = audioInputStream.getFormat();
+    // DataLine.Info info = new DataLine.Info(Clip.class, format);
+    // try {
+    // Clip clip = (Clip) AudioSystem.getLine(info);
+    // clip.open(audioInputStream);
+    // return clip;
+    // } catch (LineUnavailableException | IOException e) {
+    // throw new VoiceTextIllegalStateException(e);
+    // }
+    // }
 
-    public CompletableFuture<Void> play() {
-        Clip clip = clip();
-        CompletableFuture<Void> future = new CompletableFuture<Void>()
-                .whenComplete((x, e) -> clip.close());
-        clip.addLineListener(event -> {
-            if (event.getType() == LineEvent.Type.STOP) {
-                future.complete(null);
-            }
-        });
-        clip.start();
-        return future;
-    }
+    // public CompletableFuture<Void> play() {
+    // Clip clip = clip();
+    // CompletableFuture<Void> future = new CompletableFuture<Void>()
+    // .whenComplete((x, e) -> clip.close());
+    // clip.addLineListener(event -> {
+    // if (event.getType() == LineEvent.Type.STOP) {
+    // future.complete(null);
+    // }
+    // });
+    // clip.start();
+    // return future;
+    // }
 }

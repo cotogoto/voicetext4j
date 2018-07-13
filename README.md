@@ -27,16 +27,6 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
         }
     }
 
-`speak(text)` is non-blocking and returns `CompletableFuture<Void>`.
-To turn this to blocking, `get()` should be called.
-
-
-    CompletableFuture<Void> f = EmotionalSpeaker.HARUKA.ready()
-                                            .pitch(105)
-                                            .speed(105)
-                                            .very().happy()
-                                            .speak("おはようございます")
-                                            .thenAccept(x -> System.out.println("done"));
 
 ## Quick Start using Groovy and Grape
 

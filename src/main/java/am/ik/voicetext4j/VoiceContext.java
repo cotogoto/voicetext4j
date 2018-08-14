@@ -44,6 +44,7 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
     int pitch = 100;
     int speed = 100;
     int volume = 100;
+    String format = "wav";
 
     public VoiceContext(final String speaker) {
         this.speaker = speaker;
@@ -54,7 +55,8 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
                 .put("speaker", this.speaker)
                 .put("pitch", String.valueOf(this.pitch))
                 .put("speed", String.valueOf(this.speed))
-                .put("volume", String.valueOf(this.volume));
+                .put("volume", String.valueOf(this.volume))
+                .put("format", String.valueOf(this.format));
     }
 
     public VoiceTextResponse getResponse(final String text) {
@@ -96,6 +98,13 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
         this.volume = volume;
         return (T) this;
     }
+
+    public T format(final String format) {
+
+        this.format = format;
+        return (T) this;
+    }
+
 
     // public CompletableFuture<Void> speak(String text, String apiKey) throws InterruptedException {
     // return getResponse(text, apiKey).play();

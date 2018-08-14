@@ -46,7 +46,7 @@ public class EmotionalVoiceContextTest {
     public void testBuild() throws Exception {
         byte[] param = new EmotionalVoiceContext("haruka")
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=100&speed=100&volume=100".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=100&speed=100&volume=100&format=wav".getBytes()));
     }
 
 
@@ -54,7 +54,7 @@ public class EmotionalVoiceContextTest {
     public void testJapanese() throws Exception {
         byte[] param = new EmotionalVoiceContext("haruka")
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=100&speed=100&volume=100".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=100&speed=100&volume=100&format=wav".getBytes()));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=anger&emotion_level=2".getBytes()));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class EmotionalVoiceContextTest {
                 .speed(400)
                 .volume(200)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=200&speed=400&volume=200&emotion=anger&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=200&speed=400&volume=200&format=wav&emotion=anger&emotion_level=2".getBytes()));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class EmotionalVoiceContextTest {
                 .speed(50)
                 .volume(50)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=50&speed=50&volume=50&emotion=happiness&emotion_level=1".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=50&speed=50&volume=50&format=wav&emotion=happiness&emotion_level=1".getBytes()));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=1".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=anger&emotion_level=1".getBytes()));
     }
 
     @Test
@@ -110,7 +110,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=anger&emotion_level=2".getBytes()));
     }
 
     @Test
@@ -121,7 +121,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=happiness&emotion_level=1".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=happiness&emotion_level=1".getBytes()));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=happiness&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=happiness&emotion_level=2".getBytes()));
     }
 
     @Test
@@ -144,7 +144,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=sadness&emotion_level=1".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=sadness&emotion_level=1".getBytes()));
     }
 
     @Test
@@ -156,7 +156,7 @@ public class EmotionalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=sadness&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&format=wav&emotion=sadness&emotion_level=2".getBytes()));
     }
 
     @Test

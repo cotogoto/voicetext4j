@@ -46,7 +46,7 @@ public class NormalVoiceContextTest {
     public void testBuild() throws Exception {
         byte[] param = new NormalVoiceContext("show")
                 .build().getBody();
-        assertThat(param, is("speaker=show&pitch=100&speed=100&volume=100".getBytes()));
+        assertThat(param, is("speaker=show&pitch=100&speed=100&volume=100&format=wav".getBytes()));
     }
 
 
@@ -54,7 +54,7 @@ public class NormalVoiceContextTest {
     public void testJapanese() throws Exception {
         byte[] param = new NormalVoiceContext("show")
                 .build().getBody();
-        assertThat(param, is("speaker=show&pitch=100&speed=100&volume=100".getBytes()));
+        assertThat(param, is("speaker=show&pitch=100&speed=100&volume=100&format=wav".getBytes()));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class NormalVoiceContextTest {
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("speaker=show&pitch=120&speed=200&volume=150".getBytes()));
+        assertThat(param, is("speaker=show&pitch=120&speed=200&volume=150&format=wav".getBytes()));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class NormalVoiceContextTest {
                 .speed(400)
                 .volume(200)
                 .build().getBody();
-        assertThat(param, is("speaker=show&pitch=200&speed=400&volume=200".getBytes()));
+        assertThat(param, is("speaker=show&pitch=200&speed=400&volume=200&format=wav".getBytes()));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class NormalVoiceContextTest {
                 .speed(50)
                 .volume(50)
                 .build().getBody();
-        assertThat(param, is("speaker=show&pitch=50&speed=50&volume=50".getBytes()));
+        assertThat(param, is("speaker=show&pitch=50&speed=50&volume=50&format=wav".getBytes()));
     }
 
     @Test

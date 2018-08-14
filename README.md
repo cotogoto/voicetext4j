@@ -3,13 +3,7 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
 [![Build Status](https://travis-ci.org/making/voicetext4j.svg?branch=master)](https://travis-ci.org/making/voicetext4j)
 
-You can use VoiceText4J with the following setting in pom.xml:
-
-    <dependency>
-      <groupId>am.ik.voicetext</groupId>
-      <artifactId>voicetext4j</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+こちらのライブラリは、音声をInputStreamでそのまま取得できるように改造しています。
 
 ## Usage
 
@@ -22,27 +16,17 @@ You can use VoiceText4J with the following setting in pom.xml:
         public void testSay() throws Exception {
             System.setProperty("voicetext.apikey", "API_KEY");
             
-            EmotionalSpeaker.HARUKA.ready()
+            InputStream is = EmotionalSpeaker.HARUKA.ready()
                     .pitch(105)
                     .speed(105)
                     .very().happy()
-                    .speak("おはようございます")
-                    .get(); // blocking
+                    .getResponse("こんにちは")
+                    .inputStream();
                     
-            // you can use speak(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
+            // you can use getResponse(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
         }
     }
 
-`speak(text)` is non-blocking and returns `CompletableFuture<Void>`.
-To turn this to blocking, `get()` should be called.
-
-
-    CompletableFuture<Void> f = EmotionalSpeaker.HARUKA.ready()
-                                            .pitch(105)
-                                            .speed(105)
-                                            .very().happy()
-                                            .speak("おはようございます")
-                                            .thenAccept(x -> System.out.println("done"));
 
 ## Quick Start using Groovy and Grape
 

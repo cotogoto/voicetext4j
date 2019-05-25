@@ -3,26 +3,27 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
 [![Build Status](https://travis-ci.org/making/voicetext4j.svg?branch=master)](https://travis-ci.org/making/voicetext4j)
 
-こちらのライブラリは、音声をInputStreamでそのまま取得できるように改造しています。
+※こちらのライブラリは、音声をInputStreamでそのまま取得できるように改造しています。
+※Java11に対応
 
 ## Usage
 
     import org.junit.Test;
     import am.ik.voicetext4j.*;
-    
+
     public class SpeakerTest {
-    
+
         @Test
         public void testSay() throws Exception {
             System.setProperty("voicetext.apikey", "API_KEY");
-            
+
             InputStream is = EmotionalSpeaker.HARUKA.ready()
                     .pitch(105)
                     .speed(105)
                     .very().happy()
                     .getResponse("こんにちは")
                     .inputStream();
-                    
+
             // you can use getResponse(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
         }
     }
@@ -34,9 +35,9 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
     @Grab("am.ik.voicetext:voicetext4j:0.12.0")
     import am.ik.voicetext4j.*;
-    
+
     System.setProperty("voicetext.apikey", "API_KEY");
-    
+
     Speaker.SHOW.ready().speak("こんにちは");
     EmotionalSpeaker.HARUKA.ready().speak("こんにちは");
     EmotionalSpeaker.HIKARI.ready().speak("こんにちは");
@@ -47,7 +48,7 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 run
 
     $ groovy test.groovy
-    
+
 ### Change emotion
 
 `EmotionalSpeaker`s can be changed their emotion like the following:

@@ -38,9 +38,9 @@ public class VoiceTextResponse {
     final InputStream inputStream;
 
 
-    public VoiceTextResponse(final InputStream audioInputStream) {
+    public VoiceTextResponse(final InputStream inputStream) {
 
-        this.inputStream = audioInputStream;
+        this.inputStream = inputStream;
     }
 
 

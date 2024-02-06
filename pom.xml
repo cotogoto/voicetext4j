@@ -4,7 +4,7 @@
 	<name>VoiceText4J</name>
 	<groupId>jp.livlog.voicetext</groupId>
 	<artifactId>voicetext4j</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<repositories>
 		<repository>
 			<id>jitpack.io</id>
@@ -21,7 +21,7 @@
 	<scm>
 		<url>https://github.com/cotogoto/voicetext4j</url>
 		<connection>scm:git:git@github.com:cotogoto/voicetext4j</connection>
-	  <tag>v1.0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<url>https://github.com/cotogoto/voicetext4j</url>
 	<description>Java Client Library for VoiceText Web API (https://cloud.voicetext.jp/webapi)</description>

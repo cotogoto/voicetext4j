@@ -1,10 +1,28 @@
 # VoiceText4J
 Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
-[![Build Status](https://travis-ci.org/making/voicetext4j.svg?branch=master)](https://travis-ci.org/making/voicetext4j)
-
 ※こちらのライブラリは、音声をInputStreamでそのまま取得できるように改造しています。
 ※Java11に対応
+
+## Download
+[![](https://jitpack.io/v/cotogoto/voicetext4j.svg)](https://jitpack.io/#cotogoto/voicetext4j)
+
+Be sure to replace the **VERSION** key below with the latest version listed above.
+
+Maven
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+<dependency>
+    <groupId>com.github.cotogoto</groupId>
+    <artifactId>voicetext4j</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
 
 ## Usage
 

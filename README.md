@@ -1,8 +1,6 @@
 # VoiceText4J
 Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
-[![Build Status](https://travis-ci.org/making/voicetext4j.svg?branch=master)](https://travis-ci.org/making/voicetext4j)
-
 ※こちらのライブラリは、音声をInputStreamでそのまま取得できるように改造しています。
 ※Java11に対応
 
